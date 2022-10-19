@@ -291,6 +291,7 @@ class SearchEngine:
         elif mode == 'bert':
             engine = self.bert_engine
         elif mode == 'tf-idf':
+            query = self.reader.preprocessor.preprocess_text(query)
             engine = self.tfidf_engine
         else:
             return f'There is no engine called {mode}'
