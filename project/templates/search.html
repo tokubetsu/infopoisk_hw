@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- https://getbootstrap.com/docs/4.5/components/forms/ -->
+
+	<div class="pos-tags">
+		<p>Параметры поиска:</p>
+		<table>
+			<tr class="first-row">
+				<td class="first-col">Параметр</td>
+				<td class="second-col">Описание</td>
+				<td class="second-col">Формат</td>
+			</tr>
+			<tr>
+				<td class="first-col">Тип поиска</td>
+				<td class="second-col">Определяет способ, который используется для индексации корпуса</td>
+				<td class="second-col">bert | bm25 | tf-idf</td>
+			</tr>
+			<tr>
+				<td class="first-col">Количество результатов для вывода</td>
+				<td class="second-col">Сколько похожих на запрос вопросов требуется вывести</td>
+				<td class="second-col">Число больше 0</td>
+			</tr>
+			<tr>
+				<td class="first-col">Количество ответов на один вопрос</td>
+				<td class="second-col">Сколько самых популярных ответов на один вопрос требуется вывести</td>
+				<td class="second-col">Число больше 0</td>
+			</tr>
+		</table>
+	</div>
+
+	</br>
+	</br>
+
+	<form action="/find">
+		<div class="form-group">
+			<label for="query"><b>Введите Ваш запрос:</b></label>
+			<input type="text" class="form-control" id="query" name="query" required>
+		</div>
+		<div class="form-group col-md-4">
+				<label for="inputMode"><b>Тип поиска</b></label>
+				<select id="inputMode" class="form-control" name="mode" required>
+					<option value="bert" selected="selected">Bert</option>
+					<option value="bm25">BM25</option>
+					<option value="tf-idf">Tf-Idf</option>
+				</select>
+		</div>
+		<div class="form-group col-md-4">
+				<label for="inputQuestionsAmount"><b>Количество результатов для вывода</b></label>
+				<input type="number" class="form-control" id="inputQuestionsAmount" name="res_line" min="1" value="5" required>
+			</div>
+		<div class="form-group col-md-4">
+				<label for="inputAnswersAmount"><b>Количество ответов на один вопрос</b></label>
+				<input type="number" class="form-control" id="inputAnswersAmount" name="ans_line" min="1" value="5" required>
+		</div>
+		<button type="submit" class="btn btn-primary btn-dark">Поиск</button>
+	</form>
+
+{% endblock %}
